@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="hu" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Máchon Hásulchán – Sulchán Áruch összefoglalók</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1C2B1A;
+      --ink-light:  #2E4A2C;
+      --gold:       #8B6914;
+      --gold-light: #D4A843;
+      --gold-bg:    #FDF3DC;
+      --gold-border:#E8D49A;
+      --parchment:  #F7F5F0;
+      --parchment2: #EDE8DF;
+      --divider:    #D6CCBA;
+      --muted:      #8A8070;
+      --sage:       #9BB89A;
+      --sage-dark:  #5A7058;
+      --card-bg:    #FFFFFF;
+      --text:       #2E2E2E;
+      --font-serif: 'Frank Ruhl Libre', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --radius-card: 10px;
+      --radius-sm:   5px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--parchment);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--ink);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-area { display: flex; flex-direction: column; gap: 1px; }
+    .logo-he {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.03em;
+    }
+    .logo-sub {
+      font-size: 11px;
+      color: var(--sage);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .site-nav {
+      display: flex;
+      gap: 0.25rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .site-nav a {
+      font-size: 13px;
+      color: #C8D5C7;
+      text-decoration: none;
+      padding: 5px 11px;
+      border-radius: var(--radius-sm);
+      transition: background 0.12s, color 0.12s;
+    }
+    .site-nav a:hover { background: var(--ink-light); color: #F7F5F0; }
+    .site-nav a.active { background: var(--ink-light); color: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      border-bottom: 1px solid var(--ink-light);
+      padding: 2.5rem 2rem 2rem;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 700;
+      color: #F7F5F0;
+      line-height: 1.15;
+      margin-bottom: 0.6rem;
+    }
+    .hero-title span { color: var(--gold-light); }
+    .hero-desc {
+      font-size: 14px;
+      color: var(--sage);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 1.75rem;
+    }
+    .hero-stats { display: flex; gap: 2.5rem; }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 500;
+      color: var(--gold-light);
+    }
+    .stat-label { font-size: 12px; color: var(--sage); margin-top: 1px; }
+
+    /* ── FILTERS ── */
+    .filters {
+      background: var(--parchment);
+      border-bottom: 1px solid var(--divider);
+      padding: 0.75rem 2rem;
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .filter-label { font-size: 12px; color: var(--muted); margin-right: 0.2rem; }
+    .filter-sep { color: var(--divider); margin: 0 0.3rem; }
+    .pill {
+      font-size: 12px;
+      font-family: var(--font-sans);
+      padding: 4px 13px;
+      border-radius: 20px;
+      border: 1px solid var(--divider);
+      background: var(--card-bg);
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.1s, border-color 0.1s, color 0.1s;
+    }
+    .pill:hover { border-color: var(--gold); }
+    .pill.active {
+      background: var(--ink);
+      color: #F7F5F0;
+      border-color: var(--ink);
+    }
+
+    /* ── BODY ── */
+    .body-wrap { padding: 1.75rem 2rem 3rem; }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 2.25rem; }
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .section-line { flex: 1; height: 1px; background: var(--divider); }
+    .section-count { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+    /* ── GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-card);
+      padding: 1rem 1rem 0.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 3px 12px rgba(139,105,20,0.10);
+    }
+    .card.pending {
+      border-style: dashed;
+      opacity: 0.48;
+    }
+
+    /* héber szám a háttérben */
+    .card-bg-num {
+      position: absolute;
+      right: -2px;
+      top: -6px;
+      font-family: var(--font-serif);
+      font-size: 70px;
+      font-weight: 700;
+      color: var(--ink);
+      opacity: 0.04;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      direction: rtl;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.45rem;
+    }
+    .siman-num {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gold);
+      background: var(--gold-bg);
+      border: 1px solid var(--gold-border);
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+    .lang-badges { display: flex; gap: 3px; }
+    .badge {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    .badge-hu { background: #E6EFE6; color: #1C3A1C; border: 1px solid #B2CBB2; }
+    .badge-he { background: #E6EBF5; color: #1A274A; border: 1px solid #B2BEDC; }
+    .badge-en { background: #F2EDE4; color: #4A3818; border: 1px solid #D8CAA8; }
+    .badge-empty { background: #F0EDE7; color: #ABA098; border: 1px solid #D8D2C8; }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 3px;
+    }
+    .card-he {
+      font-family: var(--font-serif);
+      font-size: 13px;
+      color: var(--sage-dark);
+      direction: rtl;
+      text-align: right;
+      margin-bottom: 0.45rem;
+    }
+    .card-desc {
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 0.7rem;
+    }
+    .card-foot {
+      border-top: 1px solid #F0EBE0;
+      padding-top: 0.5rem;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .dl-btn {
+      font-size: 11px;
+      font-family: var(--font-sans);
+      padding: 4px 9px;
+      border-radius: 4px;
+      border: 1px solid var(--divider);
+      background: var(--parchment);
+      color: var(--ink);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background 0.1s, border-color 0.1s;
+    }
+    .dl-btn:hover { background: var(--parchment2); border-color: var(--gold); }
+    .dl-btn.disabled {
+      opacity: 0.32;
+      pointer-events: none;
+      cursor: default;
+    }
+    .dl-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+    /* ── COMING SOON BANNER ── */
+    .coming-soon {
+      background: var(--parchment2);
+      border: 1px solid var(--divider);
+      border-radius: var(--radius-card);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .coming-soon-title {
+      font-family: var(--font-serif);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .coming-soon-sub { font-size: 12px; color: var(--muted); }
+    .coming-soon-link { font-size: 12px; color: var(--gold); white-space: nowrap; text-decoration: none; }
+    .coming-soon-link:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--ink);
+      color: var(--sage);
+      text-align: center;
+      padding: 1.25rem 2rem;
+      font-size: 12px;
+    }
+    .site-footer a { color: var(--gold-light); text-decoration: none; }
+    .site-footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .site-header { padding: 1rem; flex-direction: column; align-items: flex-start; }
+      .hero { padding: 1.5rem 1rem 1.25rem; }
+      .hero-title { font-size: 26px; }
+      .hero-stats { gap: 1.5rem; }
+      .filters { padding: 0.6rem 1rem; }
+      .body-wrap { padding: 1.25rem 1rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header class="site-header">
+  <div class="logo-area">
+    <div class="logo-he">מכון השולחן</div>
+    <div class="logo-sub">Máchon Hásulchán · esstorah.com</div>
+  </div>
+  <nav class="site-nav" aria-label="Fő navigáció">
+    <a href="#oc">Orech Chájim</a>
+    <a href="#jd" class="active">Yore Déá</a>
+    <a href="#eh">Even Háezer</a>
+    <a href="#cm">Chosen Mispát</a>
+  </nav>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <h1 class="hero-title">Sulchán Áruch<br><span>összefoglalók</span></h1>
+  <p class="hero-desc">
+    Szimánok áttekinthető gyűjteménye. Minden szimánhoz tömör magyar, héber és angol összefoglaló PDF, egységes szerkezetben – a gyors áttekintéshez és a mindennapi tanuláshoz.
+  </p>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">4</div>
+      <div class="stat-label">elérhető PDF</div>
+    </div>
+    <div>
+      <div class="stat-num">576</div>
+      <div class="stat-label">szimán összesen</div>
+    </div>
+    <div>
+      <div class="stat-num">3</div>
+      <div class="stat-label">nyelv tervben</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FILTERS ══ -->
+<div class="filters" role="group" aria-label="Szűrők">
+  <span class="filter-label">Rész:</span>
+  <button class="pill active" onclick="filterSection('all', this)">Mind</button>
+  <button class="pill" onclick="filterSection('oc', this)">Orech Chájim</button>
+  <button class="pill" onclick="filterSection('jd', this)">Yore Déá</button>
+  <button class="pill" onclick="filterSection('eh', this)">Even Háezer</button>
+  <button class="pill" onclick="filterSection('cm', this)">Chosen Mispát</button>
+  <span class="filter-sep">·</span>
+  <span class="filter-label">Elérhetőség:</span>
+  <button class="pill" id="pill-ready" onclick="toggleReady(this)">Csak kész</button>
+</div>
+
+<!-- ══ BODY ══ -->
+<main class="body-wrap">
+
+  <!-- ORECH CHÁJIM -->
+  <section class="section" id="oc" data-part="oc">
+    <div class="section-head">
+      <h2 class="section-title">אורח חיים – Orech Chájim</h2>
+      <div class="section-line"></div>
+      <div class="section-count">0 kész / 697 szimán</div>
+    </div>
+    <div class="card-grid">
+      <!-- placeholder kártyák -->
+      <div class="card pending" data-ready="false">
+        <div class="card-bg-num" aria-hidden="true">א</div>
+        <div class="card-top">
+          <div class="siman-num">OC 1</div>
+          <div class="lang-badges">
+            <span class="badge badge-empty">HU</span>
+            <span class="badge badge-empty">HE</span>
+            <span class="badge badge-empty">EN</span>
+          </div>
+        </div>
+        <div class="card-title">Ébredés reggel</div>
+        <div class="card-he">הלכות השכמה</div>
+        <div class="card-desc">Hamarosan – placeholder</div>
+        <div class="card-foot">
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HU
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YORE DÉÁ -->
+  <section class="section" id="jd" data-part="jd">
+    <div class="section-head">
+      <h2 class="section-title">יורה דעה – Yore Déá</h2>
+      <div class="section-line"></div>
+      <div class="section-count">3 kész / 403 szimán</div>
+    </div>
+    <div class="card-grid">
+
+      <!-- JD 189 -->
+      <div class="card" data-ready="true">
+        <div class="card-bg-num" aria-hidden="true">קפט</div>
+        <div class="card-top">
+          <div class="siman-num">JD 189</div>
+          <div class="lang-badges">
+            <span class="badge badge-hu">HU</span>
+            <span class="badge badge-empty">HE</span>
+            <span class="badge badge-empty">EN</span>
+          </div>
+        </div>
+        <div class="card-title">Niddá – távolság és érintés</div>
+        <div class="card-he">הלכות נדה</div>
+        <div class="card-desc">A niddá-tilalom részletei, a távolságtartás szabályai és az érintés kérdései.</div>
+        <div class="card-foot">
+          <a class="dl-btn" href="pdfs/jd-189-hu.pdf" download>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HU PDF
+          </a>
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HE
+          </a>
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            EN
+          </a>
+        </div>
+      </div>
+
+      <!-- JD 190 -->
+      <div class="card" data-ready="true">
+        <div class="card-bg-num" aria-hidden="true">קצ</div>
+        <div class="card-top">
+          <div class="siman-num">JD 190</div>
+          <div class="lang-badges">
+            <span class="badge badge-hu">HU</span>
+            <span class="badge badge-empty">HE</span>
+            <span class="badge badge-empty">EN</span>
+          </div>
+        </div>
+        <div class="card-title">Vástagság és vérvizsgálat</div>
+        <div class="card-he">בדיקות ועובי</div>
+        <div class="card-desc">A halachikus vérvizsgálat és a niddá meghatározásának szempontjai.</div>
+        <div class="card-foot">
+          <a class="dl-btn" href="pdfs/jd-190-hu.pdf" download>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HU PDF
+          </a>
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HE
+          </a>
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            EN
+          </a>
+        </div>
+      </div>
+
+      <!-- JD 191 -->
+      <div class="card" data-ready="true">
+        <div class="card-bg-num" aria-hidden="true">קצא</div>
+        <div class="card-top">
+          <div class="siman-num">JD 191</div>
+          <div class="lang-badges">
+            <span class="badge badge-hu">HU</span>
+            <span class="badge badge-empty">HE</span>
+            <span class="badge badge-empty">EN</span>
+          </div>
+        </div>
+        <div class="card-title">Tisztátalanság megszűnése</div>
+        <div class="card-he">פסיקת הנידה</div>
+        <div class="card-desc">Mikor és hogyan szűnik meg a niddá-állapot; az átmeneti helyzetek kezelése.</div>
+        <div class="card-foot">
+          <a class="dl-btn" href="pdfs/jd-191-hu.pdf" download>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HU PDF
+          </a>
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HE
+          </a>
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            EN
+          </a>
+        </div>
+      </div>
+
+      <!-- JD 192 placeholder -->
+      <div class="card pending" data-ready="false">
+        <div class="card-bg-num" aria-hidden="true">קצב</div>
+        <div class="card-top">
+          <div class="siman-num">JD 192</div>
+          <div class="lang-badges">
+            <span class="badge badge-empty">HU</span>
+            <span class="badge badge-empty">HE</span>
+            <span class="badge badge-empty">EN</span>
+          </div>
+        </div>
+        <div class="card-title">Mikve és alámerülés</div>
+        <div class="card-he">הלכות טבילה</div>
+        <div class="card-desc">Hamarosan – placeholder</div>
+        <div class="card-foot">
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HU
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EVEN HÁEZER -->
+  <section class="section" id="eh" data-part="eh">
+    <div class="section-head">
+      <h2 class="section-title">אבן העזר – Even Háezer</h2>
+      <div class="section-line"></div>
+      <div class="section-count">0 kész / 178 szimán</div>
+    </div>
+    <div class="card-grid">
+      <div class="card pending" data-ready="false">
+        <div class="card-bg-num" aria-hidden="true">א</div>
+        <div class="card-top">
+          <div class="siman-num">EH 1</div>
+          <div class="lang-badges">
+            <span class="badge badge-empty">HU</span>
+            <span class="badge badge-empty">HE</span>
+            <span class="badge badge-empty">EN</span>
+          </div>
+        </div>
+        <div class="card-title">Paruc-vá-rvú – szaporodás kötelezettsége</div>
+        <div class="card-he">מצות פריה ורביה</div>
+        <div class="card-desc">Hamarosan – placeholder</div>
+        <div class="card-foot">
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HU
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHOSEN MISPÁT -->
+  <section class="section" id="cm" data-part="cm">
+    <div class="section-head">
+      <h2 class="section-title">חושן משפט – Chosen Mispát</h2>
+      <div class="section-line"></div>
+      <div class="section-count">1 kész / 417 szimán</div>
+    </div>
+    <div class="card-grid">
+
+      <!-- CM 232 -->
+      <div class="card" data-ready="true">
+        <div class="card-bg-num" aria-hidden="true">רלב</div>
+        <div class="card-top">
+          <div class="siman-num">CM 232</div>
+          <div class="lang-badges">
+            <span class="badge badge-hu">HU</span>
+            <span class="badge badge-empty">HE</span>
+            <span class="badge badge-empty">EN</span>
+          </div>
+        </div>
+        <div class="card-title">Megtévesztés az adásvételben</div>
+        <div class="card-he">הלכות אונאה</div>
+        <div class="card-desc">Oná'á – az áruban rejlő hibák közlési kötelezettsége és az árbefolyásolás tilalma.</div>
+        <div class="card-foot">
+          <a class="dl-btn" href="pdfs/cm-232-hu.pdf" download>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HU PDF
+          </a>
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HE
+          </a>
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            EN
+          </a>
+        </div>
+      </div>
+
+      <!-- CM 233 placeholder -->
+      <div class="card pending" data-ready="false">
+        <div class="card-bg-num" aria-hidden="true">רלג</div>
+        <div class="card-top">
+          <div class="siman-num">CM 233</div>
+          <div class="lang-badges">
+            <span class="badge badge-empty">HU</span>
+            <span class="badge badge-empty">HE</span>
+            <span class="badge badge-empty">EN</span>
+          </div>
+        </div>
+        <div class="card-title">Adásvétel visszavonása</div>
+        <div class="card-he">ביטול מקח</div>
+        <div class="card-desc">Hamarosan – placeholder</div>
+        <div class="card-foot">
+          <a class="dl-btn disabled" href="#" aria-disabled="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8m-3-3 3 3 3-3M3 13h10"/></svg>
+            HU
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMING SOON -->
+  <div class="coming-soon">
+    <div>
+      <div class="coming-soon-title">Az anyag folyamatosan bővül</div>
+      <div class="coming-soon-sub">Új összefoglalók elkészültükkor kerülnek fel. Az oldal fenntartója: esstorah.com</div>
+    </div>
+    <a class="coming-soon-link" href="https://esstorah.com">esstorah.com →</a>
+  </div>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <p>
+    <strong style="color: #D4A843; font-family: 'Frank Ruhl Libre', serif;">מכון השולחן</strong>
+    &nbsp;·&nbsp; Máchon Hásulchán &nbsp;·&nbsp;
+    <a href="https://esstorah.com">esstorah.com</a>
+  </p>
+</footer>
+
+<script>
+  /* ── szűrés részek szerint ── */
+  function filterSection(part, btn) {
+    document.querySelectorAll('.filters .pill').forEach(p => {
+      if (!p.id) p.classList.remove('active');
+    });
+    btn.classList.add('active');
+
+    const sections = document.querySelectorAll('.section[data-part]');
+    sections.forEach(s => {
+      s.style.display = (part === 'all' || s.dataset.part === part) ? '' : 'none';
+    });
+  }
+
+  /* ── csak kész szűrő ── */
+  let readyOnly = false;
+  function toggleReady(btn) {
+    readyOnly = !readyOnly;
+    btn.classList.toggle('active', readyOnly);
+    document.querySelectorAll('.card').forEach(c => {
+      if (readyOnly && c.dataset.ready === 'false') {
+        c.style.display = 'none';
+      } else {
+        c.style.display = '';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
