@@ -25,7 +25,7 @@ export default function Hero() {
           <div className="stat-label">elérhető PDF</div>
         </div>
         <div>
-          <div className="stat-num">576</div>
+          <div className="stat-num">1705</div>
           <div className="stat-label">szimán összesen</div>
         </div>
         <div>

@@ -35,7 +35,7 @@ export const PARTS: Part[] = [
   { id: 'oc', labelHe: 'אורח חיים', labelHu: 'Orách Cháim',  total: 697 },
   { id: 'jd', labelHe: 'יורה דעה',  labelHu: 'Jore Déá',     total: 403 },
   { id: 'eh', labelHe: 'אבן העזר',  labelHu: 'Even Háezer',  total: 178 },
-  { id: 'cm', labelHe: 'חושן משפט', labelHu: 'Chosen Mispát', total: 417 },
+  { id: 'cm', labelHe: 'חושן משפט', labelHu: 'Chosen Mispát', total: 427 },
 ];
 
 // ─────────────────────────────────────────────
