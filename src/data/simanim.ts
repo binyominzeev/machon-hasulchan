@@ -18,6 +18,11 @@ export interface Siman {
    * Omit a key to show a disabled button for that language.
    */
   pdfs: Partial<Record<Lang, string>>;
+  /**
+   * Optional external teaching videos by language.
+   * Each language can have 0..N links.
+   */
+  videos?: Partial<Record<Lang, string[]>>;
   pending?: boolean;
 }
 
@@ -123,6 +128,11 @@ export const SIMANIM: Siman[] = [
     titleHe: 'הלכות מקח טעות',
     desc: 'Mikor érvénytelen egy adásvétel (mekách táut)? Az áru visszaadásának, a mum-reklamációnak és a kártérítésnek szabályai.',
     pdfs: { hu: 'cm-232-hu.pdf' },
+    videos: {
+      hu: [
+        'https://binjomin.hu/siur/mekach-taut-1-resz-kesedelmes-szallitas-es-elallas-a-vasarlastol-cm-2323-6/',
+      ],
+    },
   },
   {
     id: 'cm-233',
