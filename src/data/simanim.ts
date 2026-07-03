@@ -131,6 +131,7 @@ export const SIMANIM: Siman[] = [
     videos: {
       hu: [
         'https://binjomin.hu/siur/mekach-taut-1-resz-kesedelmes-szallitas-es-elallas-a-vasarlastol-cm-2323-6/',
+        'https://binjomin.hu/siur/mekach-taut-2-resz-miben-kulonbozik-a-tularazastol-cm-2321/'
       ],
     },
   },
