@@ -132,7 +132,8 @@ export const SIMANIM: Siman[] = [
       hu: [
         'https://binjomin.hu/siur/mekach-taut-1-resz-kesedelmes-szallitas-es-elallas-a-vasarlastol-cm-2323-6/',
         'https://binjomin.hu/siur/mekach-taut-2-resz-miben-kulonbozik-a-tularazastol-cm-2321/',
-        'https://binjomin.hu/siur/mekach-taut-3-resz-mi-a-teendo-ha-nem-korrigalhato-a-szamitasi-hiba-cm-2321/'
+        'https://binjomin.hu/siur/mekach-taut-3-resz-mi-a-teendo-ha-nem-korrigalhato-a-szamitasi-hiba-cm-2321/',
+        'https://binjomin.hu/siur/mekach-taut-4-resz-felelosseg-az-eszrevehetetlen-hibaert-cm-2327-14/'
       ],
     },
   },
