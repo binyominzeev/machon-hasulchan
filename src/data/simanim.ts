@@ -179,6 +179,16 @@ export const SIMANIM: Siman[] = [
 
   // ── Chosen Mispát ───────────────────────────
     {
+    id: 'cm-154',
+    part: 'cm',
+    num: 154,
+    numHe: 'קנד',
+    titleHu: 'Ablakok, ajtók nyitása',
+    titleHe: 'הלכות נזקי שכנים',
+    desc: 'Mik a feltételei annak, hogy új ablakot vagy ajtót nyissunk a szomszédos lakás felé? Mikor kell engedélyt kérni a szomszédtól?',
+    pdfs: { hu: 'cm-154-hu.pdf' },
+  },
+  {
     id: 'cm-156',
     part: 'cm',
     num: 156,
