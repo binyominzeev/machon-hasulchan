@@ -62,6 +62,16 @@ export const SIMANIM: Siman[] = [
     pending: true,
   },
   {
+    id: 'oc-590',
+    part: 'oc',
+    num: 590,
+    numHe: 'תקצ',
+    titleHu: 'Ros Hásáná – sófárfújás rendje',
+    titleHe: 'הלכות ראש השנה',
+    desc: '',
+    pdfs: { hu: 'oc-590-hu.pdf' },
+  },
+  {
     id: 'oc-612',
     part: 'oc',
     num: 612,
