@@ -9,4 +9,5 @@ out/
 .DS_Store
 *.pem
 .env*
+!.env.example
 npm-debug.log*

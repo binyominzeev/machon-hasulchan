@@ -6,7 +6,8 @@
     "dev": "next dev",
     "prebuild": "node scripts/prebuild.mjs",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy:pdfs": "node scripts/upload-pdfs.mjs"
   },
   "dependencies": {
     "next": "^15.3.4",
@@ -17,6 +18,8 @@
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.4.2",
+    "ssh2-sftp-client": "^12.1.1",
     "typescript": "^5"
   }
 }
