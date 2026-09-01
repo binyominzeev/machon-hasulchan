@@ -1,10 +1,37 @@
 import 'dotenv/config';
-import { readdirSync, readFileSync, statSync } from 'node:fs';
+import { copyFileSync, existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { join } from 'node:path';
 import SftpClient from 'ssh2-sftp-client';
 
 const rootDir = process.cwd();
 const localPdfsDir = join(rootDir, 'public', 'pdfs');
+const sourceDir = process.env.PDF_SOURCE_DIR;
+
+function hashFile(path) {
+  return createHash('sha256').update(readFileSync(path)).digest('hex');
+}
+
+// Only overwrites PDFs that already exist in public/pdfs; anything else in the source dir is ignored.
+function syncFromSourceDir(targetFileNames) {
+  if (!sourceDir) return;
+
+  if (!existsSync(sourceDir)) {
+    console.error(`PDF_SOURCE_DIR does not exist: ${sourceDir}`);
+    process.exit(1);
+  }
+
+  for (const fileName of targetFileNames) {
+    const sourcePath = join(sourceDir, fileName);
+    if (!existsSync(sourcePath)) continue;
+
+    const targetPath = join(localPdfsDir, fileName);
+    if (hashFile(sourcePath) === hashFile(targetPath)) continue;
+
+    copyFileSync(sourcePath, targetPath);
+    console.log(`Updated from source: ${fileName}`);
+  }
+}
 
 const requiredEnv = ['SFTP_HOST', 'SFTP_USER', 'SFTP_REMOTE_DIR'];
 const missing = requiredEnv.filter((name) => !process.env[name]);
@@ -26,6 +53,8 @@ if (localFiles.length === 0) {
   console.error('No PDF files found in public/pdfs.');
   process.exit(1);
 }
+
+syncFromSourceDir(localFiles);
 
 const connectConfig = {
   host: process.env.SFTP_HOST,

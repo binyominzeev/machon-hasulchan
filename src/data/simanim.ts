@@ -70,6 +70,11 @@ export const SIMANIM: Siman[] = [
     titleHe: 'הלכות ראש השנה',
     desc: '',
     pdfs: { hu: 'oc-590-hu.pdf' },
+    videos: {
+      hu: [
+        'https://binjomin.hu/siur/a-sofarfujas-rendje-1-resz-oc-5901-2/'
+      ],
+    },
   },
   {
     id: 'oc-612',

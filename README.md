@@ -34,7 +34,8 @@ If browser/proxy caching is aggressive, rename updated files with a version suff
 For PDF-only changes, upload directly to the live `out/pdfs` directory over SFTP instead of doing a full `git pull` + `npm run build` on the server:
 
 1. Copy `.env.example` to `.env` and fill in the SFTP credentials and `SFTP_REMOTE_DIR`
-2. Run `npm run deploy:pdfs` — uploads only PDFs whose size differs from the remote copy
-3. Commit and push `public/pdfs` separately (keeps git/source in sync; not done by this script)
+2. Optionally set `PDF_SOURCE_DIR` to your local working folder; matching filenames are copied into `public/pdfs` (overwriting if the content changed) before upload. Files with no counterpart in `public/pdfs` are ignored.
+3. Run `npm run deploy:pdfs` — uploads only PDFs whose size differs from the remote copy
+4. Commit and push `public/pdfs` separately (keeps git/source in sync; not done by this script)
 
 This only updates the live `out/pdfs` directory; the next full `git pull` + `npm run build` on the server will regenerate it from the committed `public/pdfs` anyway.
