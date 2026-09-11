@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700&amp;display=swap');
+      .he { font-family: 'Frank Ruhl Libre', Georgia, serif; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- háttér -->
+  <rect x="0" y="0" width="64" height="64" rx="11" fill="#1C2B1A"/>
+
+  <!-- bal lap -->
+  <path d="M32,10 L8,16 L8,54 L32,50 Z" fill="#F2EDE2" stroke="#D6CCBA" stroke-width="0.6"/>
+  <!-- jobb lap -->
+  <path d="M32,10 L56,16 L56,54 L32,50 Z" fill="#EDE8DA" stroke="#D6CCBA" stroke-width="0.6"/>
+
+  <!-- gerinc -->
+  <line x1="32" y1="9" x2="32" y2="51" stroke="#D4A843" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- dekoratív sorok a bal lapon -->
+  <line x1="12" y1="30" x2="28" y2="28" stroke="#C8C0AE" stroke-width="0.7"/>
+  <line x1="12" y1="36" x2="28" y2="34" stroke="#C8C0AE" stroke-width="0.7"/>
+  <line x1="12" y1="42" x2="28" y2="40" stroke="#C8C0AE" stroke-width="0.7"/>
+
+  <!-- ש״ע felirat -->
+  <text x="20" y="26" text-anchor="middle" class="he" font-size="13" fill="#8B6914" direction="rtl">ש״ע</text>
+
+  <!-- dekoratív sorok a jobb lapon -->
+  <line x1="36" y1="30" x2="52" y2="28" stroke="#C8C0AE" stroke-width="0.7"/>
+  <line x1="36" y1="36" x2="52" y2="34" stroke="#C8C0AE" stroke-width="0.7"/>
+  <line x1="36" y1="42" x2="52" y2="40" stroke="#C8C0AE" stroke-width="0.7"/>
+  <line x1="36" y1="48" x2="52" y2="46" stroke="#C8C0AE" stroke-width="0.7"/>
+</svg>
