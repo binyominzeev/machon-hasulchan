@@ -94,7 +94,7 @@ export const SIMANIM: Siman[] = [
     titleHu: 'Sátor építésének törvényei',
     titleHe: 'הלכות סוכה',
     desc: 'Ánáné hákávod – mit szimbolizál a sátor?',
-    pdfs: { hu: 'oc-625-629-hu.pdf' },
+    pdfs: { hu: 'oc-625-hu.pdf' },
   },
   {
     id: 'oc-626',
@@ -104,7 +104,7 @@ export const SIMANIM: Siman[] = [
     titleHu: 'Sátor építésének törvényei',
     titleHe: 'הלכות סוכה',
     desc: 'Fa vagy háztető alatt épülő sátor',
-    pdfs: { hu: 'oc-625-629-hu.pdf' },
+    pdfs: { hu: 'oc-625-hu.pdf' },
   },
   {
     id: 'oc-627',
@@ -114,7 +114,7 @@ export const SIMANIM: Siman[] = [
     titleHu: 'Sátorban alvás – ágy és baldachin',
     titleHe: 'הלכות סוכה',
     desc: '',
-    pdfs: { hu: 'oc-625-629-hu.pdf' },
+    pdfs: { hu: 'oc-625-hu.pdf' },
   },
     {
     id: 'oc-628',
@@ -124,7 +124,7 @@ export const SIMANIM: Siman[] = [
     titleHu: 'Egyik sátor a másikban',
     titleHe: 'הלכות סוכה',
     desc: '',
-    pdfs: { hu: 'oc-625-629-hu.pdf' },
+    pdfs: { hu: 'oc-625-hu.pdf' },
   },
   {
     id: 'oc-629',
@@ -134,7 +134,17 @@ export const SIMANIM: Siman[] = [
     titleHu: 'A szchách anyaga',
     titleHe: 'הלכות סוכה',
     desc: '',
-    pdfs: { hu: 'oc-625-629-hu.pdf' },
+    pdfs: { hu: 'oc-625-hu.pdf' },
+  },
+  {
+    id: 'oc-630',
+    part: 'oc',
+    num: 630,
+    numHe: 'תרל',
+    titleHu: 'A sátor falának törvényei',
+    titleHe: 'הלכות סוכה',
+    desc: '',
+    pdfs: { hu: 'oc-625-hu.pdf' },
   },
   // ── Jore Déá ────────────────────────────────
   {
