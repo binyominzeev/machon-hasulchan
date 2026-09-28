@@ -146,6 +146,16 @@ export const SIMANIM: Siman[] = [
     desc: '',
     pdfs: { hu: 'oc-625-hu.pdf' },
   },
+  {
+    id: 'oc-639',
+    part: 'oc',
+    num: 639,
+    numHe: 'תרלט',
+    titleHu: 'A sátorban lakás törvényei',
+    titleHe: 'הלכות סוכה',
+    desc: '',
+    pdfs: { hu: 'oc-639-hu.pdf' },
+  },
   // ── Jore Déá ────────────────────────────────
   {
     id: 'jd-189',
